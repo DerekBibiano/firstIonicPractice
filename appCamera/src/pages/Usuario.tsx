@@ -2,11 +2,15 @@ import { IonContent, IonList, IonHeader, IonPage, IonTitle, IonToolbar, IonItem,
 import ExploreContainer from '../components/ExploreContainer';
 
 import './Tab1.css';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, useLocation } from 'react-router';
 interface UserDetailPagePromps extends RouteComponentProps <{ id: string}> {}
 
-const Usuario: React.FC<UserDetailPagePromps> = ({match}) => {
-
+const Usuario: React.FC = () => {
+ const location = useLocation();
+ const id = location.state ? location.state.id : null;
+ const nombre = location.state ? location.state.nombre : null;
+ const correo = location.state ? location.state.correo : null;
+ const item = location.state ? location.state.item : null;
 
   return (
     <IonPage>
@@ -19,21 +23,14 @@ const Usuario: React.FC<UserDetailPagePromps> = ({match}) => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <p>{match.params.id}</p>
-        {/* <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 3</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 3 page" />
-        <IonCard>
+      <IonCard>
       <IonCardHeader>
         <IonCardTitle>{nombre}</IonCardTitle>
         <IonCardSubtitle>{id}</IonCardSubtitle>
       </IonCardHeader>
 
       <IonCardContent>{correo}</IonCardContent>
-    </IonCard> */}
+    </IonCard>
       </IonContent>
     </IonPage>
   );
